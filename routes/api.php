@@ -14,5 +14,19 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
+});
+
+
+Route::namespace('Api')->group( function () {
+
+	Route::post('/cliente/add', 'ClienteController@add');
+
+	Route::get('/clientes', 'ClienteController@list');
+	Route::get('/clientes/{id}', 'ClienteController@select');
+	
+	Route::put('/cliente/{id}', 'ClienteController@update');
+
+	Route::delete('/cliente/{id}', 'ClienteController@delete');
+
 });
