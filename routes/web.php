@@ -11,6 +11,27 @@
 |
 */
 
+/*
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
+});
+*/
+
+Route::get('/', function () {
+	return view('home');
+});
+
+Route::namespace('Web')->group( function () {
+
+	Route::get('/clientes', 'ClienteController@list');
+
+	Route::get('/cliente/cadastrar', function () {
+		return view('cliente/cadastrar');
+	});
+	Route::post('/cliente/cadastrar', 'ClienteController@add');
+
+	Route::get('/cliente/editar/{id}', 'ClienteController@select');
+	Route::post('/cliente/editar/{id}', 'ClienteController@update');
+
+	Route::get('/cliente/excluir/{id}', 'ClienteController@delete');
 });
